@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Abhinand PP is a full stack PHP/Laravel developer building production-ready ERP, SaaS, GRC, legal-tech systems, backend APIs, and Vue.js interfaces."
+      content="I build ERP, SaaS, GRC, and legal-tech platforms on Laravel 12, Vue.js, MySQL, and AWS — with 4+ years shipping 5+ live products. I own systems end-to-end: schema design, API contracts, payment integrations, and production deployment."
     />
     <title>Abhinand PP | Full Stack Laravel Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,8 +38,9 @@
             <p class="eyebrow">Full Stack PHP/Laravel Developer</p>
             <h1>Production backend systems for teams that cannot afford fragile software.</h1>
             <p class="hero-lede">
-              I build ERP, SaaS, GRC, and legal-tech platforms across Laravel, Vue.js, MySQL,
-              REST APIs, and AWS, with 4+ years of production experience across 5+ live products.
+              I build ERP, SaaS, GRC, and legal-tech platforms on Laravel 12, Vue.js, MySQL,
+              and AWS — with 4+ years shipping 5+ live products. I own systems end-to-end:
+              schema design, API contracts, payment integrations, and production deployment.
             </p>
             <div class="hero-actions">
               <a class="primary-btn" href="#work">View Selected Work</a>
@@ -52,25 +53,27 @@
               </div>
               <div>
                 <dt>5+</dt>
-                <dd>Live ERP, SaaS, GRC, and legal-tech products</dd>
+                <dd>Live products in production</dd>
               </div>
               <div>
-                <dt>30%</dt>
-                <dd>Downtime reduction through production bug fixes</dd>
+                <dt>40%</dt>
+                <dd>MySQL query performance improvement</dd>
+              </div>
+              <div>
+                <dt>20+</dt>
+                <dd>REST API endpoints designed and maintained</dd>
               </div>
             </dl>
           </div>
 
           <div class="hero-visual" data-reveal>
             <img src="/assets/enterprise-architecture.svg" alt="Abstract enterprise software architecture visualization" />
-            <div class="signal-card signal-card-a">
-              <span>API Health</span>
-              <strong>99.9%</strong>
-            </div>
-            <div class="signal-card signal-card-b">
-              <span>Core Stack</span>
-              <strong>Laravel · Vue · AWS</strong>
-            </div>
+            <pre class="code-card" aria-label="Laravel payment reliability snippet"><code>// Zero payment loss in production
+DB::transaction(function () use ($order, $payload) {
+    $order->markPaid();
+    PaymentRecord::createFromWebhook($payload);
+    event(new PaymentConfirmed($order));
+});</code></pre>
           </div>
         </section>
 
@@ -88,16 +91,59 @@
             <h2>Work shaped around business-critical workflows.</h2>
           </div>
           <div class="project-grid">
-            <article class="project-card featured" data-reveal>
+            <article class="project-card featured category-saas" data-reveal>
+              <div class="project-meta">
+                <span>SaaS · Advisor Platform</span>
+                <a href="https://celesora.com" target="_blank" rel="noreferrer">Live Site</a>
+              </div>
+              <h3>Celesora</h3>
+              <p>
+                Multi-tenant SaaS platform for astrology advisors — onboarding, session booking,
+                billing, and RBAC-secured API layer.
+              </p>
+              <p class="impact"><strong>Impact:</strong> Integrated SolidGate payments with webhook validation and idempotency handling — zero payment data loss in production.</p>
+              <ul class="chip-list">
+                <li>Laravel 12</li>
+                <li>Vue.js 3</li>
+                <li>MySQL</li>
+                <li>AWS S3</li>
+                <li>JWT</li>
+                <li>SolidGate</li>
+                <li>Axios</li>
+              </ul>
+            </article>
+
+            <article class="project-card category-legal" data-reveal>
+              <div class="project-meta">
+                <span>Legal Tech · Case Management</span>
+                <a href="https://easyadvo.de/" target="_blank" rel="noreferrer">Live Site</a>
+              </div>
+              <h3>EasyAdvo</h3>
+              <p>
+                Legal-tech case management system with client RBAC, document handling workflows,
+                and Stripe billing integration.
+              </p>
+              <p class="impact"><strong>Impact:</strong> Stripe integration with full webhook handling; production-grade RBAC securing multi-role client journeys.</p>
+              <ul class="chip-list">
+                <li>Laravel 12</li>
+                <li>Vue.js</li>
+                <li>MySQL</li>
+                <li>Stripe</li>
+                <li>JWT</li>
+              </ul>
+            </article>
+
+            <article class="project-card category-enterprise" data-reveal>
               <div class="project-meta">
                 <span>Enterprise · GRC</span>
                 <span>Excelledia Ventures</span>
               </div>
               <h3>Compliance & Process Management Platform</h3>
               <p>
-                Backend APIs and full-stack features for a compliance-focused enterprise product,
-                balancing Laravel service logic, MySQL schema design, and Vue-facing integration.
+                Backend APIs and full-stack features for a large-scale GRC and process management
+                platform serving enterprise clients.
               </p>
+              <p class="impact"><strong>Impact:</strong> Designed 20+ REST API endpoints with JWT auth and role-based access control in a cross-functional engineering team.</p>
               <ul class="chip-list">
                 <li>Laravel</li>
                 <li>REST APIs</li>
@@ -107,75 +153,62 @@
               </ul>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card category-saas" data-reveal>
               <div class="project-meta">
-                <span>Legal Tech · Public Site</span>
+                <span>E-commerce · Freelance</span>
+                <span>Private Build</span>
               </div>
-              <h3>EasyAdvo</h3>
+              <h3>Duboxx</h3>
               <p>
-                Contributed to a legal-tech web platform with production-facing workflows and
-                business-critical user journeys.
+                E-commerce platform for package and product listings, built solo from schema to
+                deployment within 3 months.
               </p>
-              <div class="project-links">
-                <a href="https://easyadvo.de/" target="_blank" rel="noreferrer">Visit Site</a>
-              </div>
+              <p class="impact"><strong>Impact:</strong> Full end-to-end delivery — API design, relational schema, Vue.js frontend, and AWS S3 media pipeline — independently.</p>
               <ul class="chip-list">
-                <li>Legal Tech</li>
-                <li>Web Platform</li>
-                <li>Production Delivery</li>
+                <li>Laravel</li>
+                <li>Vue.js</li>
+                <li>MySQL</li>
+                <li>AWS S3</li>
+                <li>REST APIs</li>
               </ul>
             </article>
 
-            <article class="project-card" data-reveal>
-              <div class="project-meta">
-                <span>Government · Culture Platform</span>
-              </div>
-              <h3>Dubai Culture</h3>
-              <p>
-                Worked on a public-sector digital platform with a strong focus on reliability,
-                content structure, and polished user-facing delivery.
-              </p>
-              <div class="project-links">
-                <a href="https://www.dubaiculture.gov.ae/" target="_blank" rel="noreferrer">Visit Site</a>
-              </div>
-              <ul class="chip-list">
-                <li>Public Sector</li>
-                <li>Web Delivery</li>
-                <li>Content Platform</li>
-              </ul>
-            </article>
-
-            <article class="project-card" data-reveal>
+            <article class="project-card category-enterprise" data-reveal>
               <div class="project-meta">
                 <span>ERP · Healthcare · Education</span>
+                <span>Production Modules</span>
               </div>
               <h3>Clinic & Institute ERP Modules</h3>
               <p>
                 Built and maintained Laravel ERP modules for appointment scheduling, video
                 consultations, role-based access, and patient dashboard flows.
               </p>
+              <p class="impact"><strong>Impact:</strong> Reduced unplanned downtime by ~30% through production bug fixes and refactoring 4+ legacy modules into service-oriented architecture.</p>
               <ul class="chip-list">
                 <li>Laravel 9+</li>
                 <li>Blade</li>
                 <li>AJAX</li>
                 <li>RBAC</li>
+                <li>MySQL</li>
               </ul>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card category-fintech" data-reveal>
               <div class="project-meta">
-                <span>HRM · Internal Systems</span>
+                <span>Fintech · GST Billing</span>
+                <span>Glinjos Innovations</span>
               </div>
-              <h3>Custom HRM Platform</h3>
+              <h3>GDiary</h3>
               <p>
-                Developed HRM workflows including attendance, payroll, leave management, and
-                relational data handling using PHP, Laravel, CodeIgniter, and MySQL.
+                GST billing and financial accounting system with compliant invoicing, transaction
+                ledger, and multi-format reporting.
               </p>
+              <p class="impact"><strong>Impact:</strong> Payroll computation for 100+ employees with leave management, attendance tracking, and normalized relational schemas with indexing.</p>
               <ul class="chip-list">
-                <li>PHP</li>
-                <li>CodeIgniter</li>
-                <li>PDO</li>
+                <li>Laravel</li>
                 <li>MySQL</li>
+                <li>Blade</li>
+                <li>PDO</li>
               </ul>
             </article>
           </div>
@@ -192,28 +225,40 @@
               <div>
                 <h3>Software Engineer · Excelledia Ventures</h3>
                 <p>
-                  Building REST APIs and full-stack features for a large-scale GRC and process
-                  management platform in a small cross-functional engineering team.
+                  Dubai (Remote). Building REST APIs and full-stack features for a large-scale GRC
+                  and compliance management platform in a cross-functional team.
                 </p>
               </div>
             </article>
             <article class="timeline-item" data-reveal>
-              <span class="timeline-date">Jul 2024 - Sep 2025</span>
+              <span class="timeline-date">Jul 2024 - Feb 2026</span>
               <div>
-                <h3>PHP Developer · ATEAM Soft Solutions</h3>
+                <h3>Full Stack Developer · ATEAM Soft Solutions</h3>
                 <p>
-                  Engineered ERP modules, appointment workflows, video consultation APIs, RBAC
-                  systems, and production fixes that reduced downtime by 30%.
+                  Trivandrum. Architected backend for 3+ ERP/SaaS products. Integrated Stripe and
+                  SolidGate payments. Improved MySQL query performance ~40% through strategic
+                  indexing. Refactored legacy modules into SOA reducing code duplication ~30%.
                 </p>
               </div>
             </article>
             <article class="timeline-item" data-reveal>
-              <span class="timeline-date">Oct 2021 - Sep 2023</span>
+              <span class="timeline-date">Sep 2023 - Jun 2024</span>
               <div>
-                <h3>PHP Developer · Glinjos Innovations Software Solutions LLP</h3>
+                <h3>Full Stack PHP/Laravel Developer · Freelance</h3>
                 <p>
-                  Developed Laravel, CodeIgniter, PDO, and MySQL systems, including a custom HRM
-                  platform with attendance, payroll, and leave modules.
+                  Remote. Independently delivered 3+ client projects. Built Duboxx e-commerce
+                  platform solo in 3 months. Migrated 2 client codebases from Laravel v8/v9 to
+                  v10/v11 with zero downtime.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-item" data-reveal>
+              <span class="timeline-date">Oct 2021 - Aug 2023</span>
+              <div>
+                <h3>PHP Developer · Glinjos Innovations</h3>
+                <p>
+                  Kannur. Built GDiary GST billing system, HRM platform with payroll for 100+
+                  employees, and normalized database schemas across multiple client products.
                 </p>
               </div>
             </article>
@@ -226,34 +271,78 @@
             <h2>Tools chosen for durable production work.</h2>
           </div>
           <div class="stack-grid">
-            <article data-reveal>
+            <article class="stack-card" data-reveal>
               <h3>Backend</h3>
-              <p>PHP 8.x, Laravel 10/11/12, REST APIs, JWT, OAuth 2.0, payment integrations.</p>
+              <ul class="chip-list">
+                <li>PHP 8.x</li>
+                <li>Laravel 10/11/12</li>
+                <li>RESTful APIs</li>
+                <li>JWT</li>
+                <li>OAuth 2.0</li>
+                <li>PDO</li>
+                <li>Service-Oriented Architecture</li>
+                <li>API Versioning</li>
+                <li>RBAC</li>
+                <li>Webhook Validation</li>
+              </ul>
             </article>
-            <article data-reveal>
+            <article class="stack-card" data-reveal>
               <h3>Frontend</h3>
-              <p>Vue.js 3, Livewire, Blade, Tailwind CSS, AJAX, responsive dashboard interfaces.</p>
+              <ul class="chip-list">
+                <li>Vue.js 3</li>
+                <li>Livewire</li>
+                <li>Filament</li>
+                <li>Blade</li>
+                <li>Tailwind CSS</li>
+                <li>JavaScript</li>
+                <li>Axios</li>
+                <li>Responsive Dashboards</li>
+              </ul>
             </article>
-            <article data-reveal>
+            <article class="stack-card" data-reveal>
+              <h3>Payments & Integrations</h3>
+              <ul class="chip-list">
+                <li>Stripe</li>
+                <li>SolidGate</li>
+                <li>OpenAI API</li>
+                <li>Gemini API</li>
+                <li>Idempotency Handling</li>
+                <li>Webhook Validation</li>
+              </ul>
+            </article>
+            <article class="stack-card" data-reveal>
               <h3>Data & Cloud</h3>
-              <p>MySQL, normalized relational schemas, AWS S3, Docker, Git, Postman.</p>
+              <ul class="chip-list">
+                <li>MySQL</li>
+                <li>Query Optimization</li>
+                <li>Normalized Schema Design</li>
+                <li>AWS S3</li>
+                <li>Docker</li>
+                <li>Git</li>
+                <li>Postman</li>
+                <li>Linux</li>
+              </ul>
             </article>
-            <article data-reveal>
-              <h3>Expanding</h3>
-              <p>Node.js, React, AI-enabled workflows, and deeper full-stack system design.</p>
+            <article class="stack-card" data-reveal>
+              <h3>AI Integrations</h3>
+              <ul class="chip-list">
+                <li>OpenAI API</li>
+                <li>Gemini</li>
+                <li>Chat Autoreply System</li>
+              </ul>
             </article>
           </div>
         </section>
 
         <section class="credential-band" data-reveal>
           <div>
-            <p class="eyebrow">Credentials</p>
-            <h2>Recent AI fluency layered onto a production engineering base.</h2>
+            <p class="eyebrow">Certifications</p>
+            <h2>Credentials without the noise.</h2>
           </div>
           <div class="credential-list">
-            <span>Google AI Professional Certificate · May 2026</span>
-            <span>Anthropic AI Fluency Framework & Foundations · May 2026</span>
-            <span>Kannur University · Bachelor&apos;s degree in Computer Programming</span>
+            <span><strong>AI</strong> Google AI Professional Certificate <em>2026</em></span>
+            <span><strong>AI</strong> Anthropic AI Fluency & Foundations <em>2026</em></span>
+            <span><strong>BCA</strong> Bachelor of Computer Application — Kannur University <em>2018-2021</em></span>
           </div>
         </section>
 
@@ -262,8 +351,8 @@
             <p class="eyebrow">Available for Senior Roles</p>
             <h2>Let&apos;s build systems that survive real users.</h2>
             <p>
-              Open to backend-heavy full-stack roles, Laravel platform work, ERP/SaaS products,
-              and teams that care about clean APIs, maintainable data models, and practical delivery.
+              Open to senior backend and full-stack roles — Laravel platform work, SaaS/ERP products,
+              and teams that value clean APIs, maintainable data models, and payment-grade reliability.
             </p>
           </div>
           <div class="contact-card">
@@ -275,6 +364,10 @@
           </div>
         </section>
       </main>
+      <footer class="site-footer">
+        <span>Built with Laravel appreciation and too much coffee.</span>
+        <a href="https://abhinand-portfolio-six.vercel.app" target="_blank" rel="noreferrer">abhinand-portfolio-six.vercel.app</a>
+      </footer>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
