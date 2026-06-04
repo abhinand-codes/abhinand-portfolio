@@ -1,0 +1,16 @@
+{
+  "name": "abhinand-pp-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium personal portfolio for Abhinand PP.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "vite": "^7.0.0",
+    "typescript": "^5.7.0"
+  },
+  "devDependencies": {}
+}

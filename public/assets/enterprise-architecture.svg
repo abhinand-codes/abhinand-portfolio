@@ -1,0 +1,53 @@
+<svg width="1100" height="900" viewBox="0 0 1100 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="900" rx="48" fill="#071014"/>
+  <rect x="74" y="88" width="952" height="724" rx="36" fill="#0D1C20" stroke="#1C3D43" stroke-width="2"/>
+  <path d="M140 652C280 548 370 628 500 516C635 400 722 446 904 268" stroke="#28E0C3" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 18"/>
+  <path d="M164 246C294 342 378 292 496 392C610 490 728 484 914 620" stroke="#4BA3FF" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 16"/>
+  <g filter="url(#glowA)">
+    <rect x="144" y="148" width="284" height="176" rx="24" fill="#10272D" stroke="#2A5962"/>
+    <rect x="172" y="184" width="94" height="18" rx="9" fill="#28E0C3"/>
+    <rect x="172" y="226" width="210" height="14" rx="7" fill="#365D65"/>
+    <rect x="172" y="260" width="158" height="14" rx="7" fill="#254951"/>
+  </g>
+  <g filter="url(#glowB)">
+    <rect x="630" y="154" width="320" height="220" rx="28" fill="#101E2D" stroke="#2A527A"/>
+    <circle cx="704" cy="242" r="42" fill="#153B52" stroke="#4BA3FF" stroke-width="4"/>
+    <circle cx="812" cy="242" r="42" fill="#143B36" stroke="#28E0C3" stroke-width="4"/>
+    <circle cx="758" cy="302" r="42" fill="#3B2E18" stroke="#F2B25E" stroke-width="4"/>
+  </g>
+  <g filter="url(#glowA)">
+    <rect x="202" y="466" width="360" height="240" rx="30" fill="#0E2229" stroke="#2A5962"/>
+    <rect x="236" y="516" width="292" height="20" rx="10" fill="#4BA3FF"/>
+    <rect x="236" y="568" width="218" height="16" rx="8" fill="#365D65"/>
+    <rect x="236" y="612" width="254" height="16" rx="8" fill="#254951"/>
+    <rect x="236" y="656" width="174" height="16" rx="8" fill="#28E0C3"/>
+  </g>
+  <g filter="url(#glowB)">
+    <rect x="666" y="516" width="276" height="174" rx="28" fill="#111D25" stroke="#2A527A"/>
+    <rect x="704" y="560" width="54" height="86" rx="10" fill="#28E0C3"/>
+    <rect x="782" y="590" width="54" height="56" rx="10" fill="#4BA3FF"/>
+    <rect x="860" y="540" width="54" height="106" rx="10" fill="#F2B25E"/>
+  </g>
+  <circle cx="142" cy="652" r="12" fill="#28E0C3"/>
+  <circle cx="500" cy="516" r="12" fill="#28E0C3"/>
+  <circle cx="904" cy="268" r="12" fill="#28E0C3"/>
+  <circle cx="164" cy="246" r="12" fill="#4BA3FF"/>
+  <circle cx="496" cy="392" r="12" fill="#4BA3FF"/>
+  <circle cx="914" cy="620" r="12" fill="#4BA3FF"/>
+  <defs>
+    <filter id="glowA" x="94" y="98" width="918" height="658" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.156 0 0 0 0 0.878 0 0 0 0 0.765 0 0 0 0.22 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect"/>
+      <feBlend in="SourceGraphic" in2="effect" result="shape"/>
+    </filter>
+    <filter id="glowB" x="580" y="104" width="420" height="636" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="22" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.294 0 0 0 0 0.639 0 0 0 0 1 0 0 0 0.18 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect"/>
+      <feBlend in="SourceGraphic" in2="effect" result="shape"/>
+    </filter>
+  </defs>
+</svg>
