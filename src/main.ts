@@ -185,7 +185,7 @@ if (sendMailBtn) {
     const to = copyEmailBtn?.dataset.email ?? "abhinand.codes@gmail.com";
     const subjectEl = document.querySelector<HTMLInputElement>("#contact-subject");
     const messageEl = document.querySelector<HTMLTextAreaElement>("#contact-message");
-    const subject = subjectEl?.value.trim() || "Role opportunity";
+    const subject = subjectEl?.value.trim() || "Hello from your portfolio";
     const body = messageEl?.value.trim() || "";
     const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;

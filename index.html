@@ -461,11 +461,11 @@ DB::transaction(function () use ($order, $payload) {
               </div>
               <label class="terminal-field">
                 <span class="terminal-prompt">subject:</span>
-                <input type="text" id="contact-subject" placeholder="Role at [Company]" autocomplete="off" />
+                <input type="text" id="contact-subject" placeholder="What's this about?" autocomplete="off" />
               </label>
               <label class="terminal-field terminal-field-area">
                 <span class="terminal-prompt">message:</span>
-                <textarea id="contact-message" rows="4" placeholder="Hi Abhinand, we're hiring for..."></textarea>
+                <textarea id="contact-message" rows="4" placeholder="Hi Abhinand, ..."></textarea>
               </label>
               <button type="button" id="send-mail-btn" class="primary-btn terminal-send">
                 Send message<span class="cursor-blink" aria-hidden="true">_</span>
