@@ -792,11 +792,7 @@ h3 {
   width: max-content;
   gap: 16px;
   padding: 22px 20px;
-  animation: marquee-scroll 78s linear infinite;
-}
-
-.stack-marquee:hover .marquee-track {
-  animation-play-state: paused;
+  animation: marquee-scroll 50s linear infinite;
 }
 
 .marquee-item {
