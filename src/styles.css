@@ -791,7 +791,7 @@ h3 {
   display: flex;
   width: max-content;
   gap: 16px;
-  padding: 22px 20px;
+  padding: 22px 0;
   animation: marquee-scroll 50s linear infinite;
 }
 
