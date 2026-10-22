@@ -1,3 +1,6 @@
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
 const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
 const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-links a");
 const navList = document.querySelector<HTMLElement>(".nav-links");
@@ -52,7 +55,6 @@ window.addEventListener("resize", moveNavIndicator);
 
 // Count-up animation for hero stats (4+, 5+, 40%, 20+ ...)
 const statEls = document.querySelectorAll<HTMLElement>(".hero-stats dt");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const animateStat = (el: HTMLElement) => {
   const raw = el.dataset.statValue ?? el.textContent?.trim() ?? "";
@@ -105,3 +107,79 @@ statEls.forEach((el) => {
   }
   statObserver.observe(el);
 });
+
+// Scroll progress bar
+const progressBar = document.querySelector<HTMLElement>(".scroll-progress span");
+const updateProgress = () => {
+  if (!progressBar) return;
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+};
+updateProgress();
+window.addEventListener("scroll", updateProgress, { passive: true });
+window.addEventListener("resize", updateProgress);
+
+// Cursor glow + custom cursor dot (desktop, fine-pointer only)
+if (!isCoarsePointer) {
+  const cursorGlow = document.querySelector<HTMLElement>(".cursor-glow");
+  const cursorDot = document.querySelector<HTMLElement>(".cursor-dot");
+  let rafId = 0;
+  let targetX = 0;
+  let targetY = 0;
+
+  const applyCursorPosition = () => {
+    if (cursorGlow) cursorGlow.style.transform = `translate(${targetX}px, ${targetY}px)`;
+    if (cursorDot) cursorDot.style.transform = `translate(${targetX}px, ${targetY}px)`;
+    rafId = 0;
+  };
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      if (cursorGlow) cursorGlow.style.opacity = "1";
+      if (cursorDot) cursorDot.style.opacity = "1";
+      if (!rafId) rafId = requestAnimationFrame(applyCursorPosition);
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("pointerleave", () => {
+    if (cursorGlow) cursorGlow.style.opacity = "0";
+    if (cursorDot) cursorDot.style.opacity = "0";
+  });
+
+  const hoverTargets = document.querySelectorAll<HTMLElement>("a, button, [data-tilt]");
+  hoverTargets.forEach((el) => {
+    el.addEventListener("pointerenter", () => cursorDot?.classList.add("is-hovering"));
+    el.addEventListener("pointerleave", () => cursorDot?.classList.remove("is-hovering"));
+  });
+}
+
+// 3D tilt on project cards (desktop, fine-pointer only)
+if (!isCoarsePointer && !prefersReducedMotion) {
+  const tiltCards = document.querySelectorAll<HTMLElement>("[data-tilt]");
+
+  tiltCards.forEach((card) => {
+    const maxTilt = 6;
+
+    const handleMove = (event: PointerEvent) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - 0.5;
+      const py = (event.clientY - rect.top) / rect.height - 0.5;
+      const rotateX = (-py * maxTilt).toFixed(2);
+      const rotateY = (px * maxTilt).toFixed(2);
+      card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    };
+
+    const resetTilt = () => {
+      card.style.transform = "";
+    };
+
+    card.addEventListener("pointermove", handleMove);
+    card.addEventListener("pointerleave", resetTilt);
+  });
+}
