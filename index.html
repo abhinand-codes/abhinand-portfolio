@@ -8,6 +8,9 @@
       content="I build ERP, SaaS, GRC, and legal-tech platforms on Laravel 12, Vue.js, MySQL, and AWS — with 4+ years shipping 5+ live products. I own systems end-to-end: schema design, API contracts, payment integrations, and production deployment."
     />
     <title>Abhinand PP | Full Stack Laravel Developer</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -423,20 +426,51 @@ DB::transaction(function () use ($order, $payload) {
         </section>
 
         <section class="contact-section" id="contact" data-reveal>
-          <div>
-            <p class="eyebrow">Available for Senior Roles</p>
+          <div class="contact-intro">
+            <p class="eyebrow">
+              <span class="availability-dot" aria-hidden="true"></span>
+              Available for Senior Roles
+            </p>
             <h2>Let&apos;s build systems that survive real users.</h2>
             <p>
               Open to senior backend and full-stack roles — Laravel platform work, SaaS/ERP products,
               and teams that value clean APIs, maintainable data models, and payment-grade reliability.
             </p>
+            <div class="contact-links">
+              <a href="https://www.linkedin.com/in/abhinand-pp/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://github.com/abhinand-codes" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="tel:+919207329528">+91 92073 29528</a>
+              <span>Kannur, Kerala, India</span>
+            </div>
           </div>
-          <div class="contact-card">
-            <a href="mailto:abhinand.codes@gmail.com">abhinand.codes@gmail.com</a>
-            <a href="https://www.linkedin.com/in/abhinand-pp/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://github.com/abhinand-codes" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="tel:+919207329528">+91 92073 29528</a>
-            <span>Kannur, Kerala, India</span>
+
+          <div class="contact-terminal">
+            <div class="terminal-bar">
+              <span class="terminal-dots" aria-hidden="true">
+                <span class="dot dot-red"></span><span class="dot dot-amber"></span><span class="dot dot-green"></span>
+              </span>
+              <span class="terminal-title">compose_message.sh</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-field">
+                <span class="terminal-prompt">to:</span>
+                <span class="terminal-value" id="contact-to-value">abhinand.codes@gmail.com</span>
+                <button type="button" class="copy-email-btn" id="copy-email-btn" data-email="abhinand.codes@gmail.com">
+                  <span class="copy-label">Copy</span>
+                </button>
+              </div>
+              <label class="terminal-field">
+                <span class="terminal-prompt">subject:</span>
+                <input type="text" id="contact-subject" placeholder="Role at [Company]" autocomplete="off" />
+              </label>
+              <label class="terminal-field terminal-field-area">
+                <span class="terminal-prompt">message:</span>
+                <textarea id="contact-message" rows="4" placeholder="Hi Abhinand, we're hiring for..."></textarea>
+              </label>
+              <button type="button" id="send-mail-btn" class="primary-btn terminal-send">
+                Send message<span class="cursor-blink" aria-hidden="true">_</span>
+              </button>
+            </div>
           </div>
         </section>
       </main>

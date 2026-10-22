@@ -159,6 +159,39 @@ if (!isCoarsePointer) {
   });
 }
 
+// Contact terminal: copy email + mailto composer
+const copyEmailBtn = document.querySelector<HTMLButtonElement>("#copy-email-btn");
+if (copyEmailBtn) {
+  const label = copyEmailBtn.querySelector<HTMLElement>(".copy-label");
+  copyEmailBtn.addEventListener("click", async () => {
+    const email = copyEmailBtn.dataset.email ?? "";
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      // Clipboard API unavailable (older browser / permissions) — fall back silently.
+    }
+    copyEmailBtn.classList.add("is-copied");
+    if (label) label.textContent = "Copied ✓";
+    window.setTimeout(() => {
+      copyEmailBtn.classList.remove("is-copied");
+      if (label) label.textContent = "Copy";
+    }, 1800);
+  });
+}
+
+const sendMailBtn = document.querySelector<HTMLButtonElement>("#send-mail-btn");
+if (sendMailBtn) {
+  sendMailBtn.addEventListener("click", () => {
+    const to = copyEmailBtn?.dataset.email ?? "abhinand.codes@gmail.com";
+    const subjectEl = document.querySelector<HTMLInputElement>("#contact-subject");
+    const messageEl = document.querySelector<HTMLTextAreaElement>("#contact-message");
+    const subject = subjectEl?.value.trim() || "Role opportunity";
+    const body = messageEl?.value.trim() || "";
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  });
+}
+
 // 3D tilt on project cards (desktop, fine-pointer only)
 if (!isCoarsePointer && !prefersReducedMotion) {
   const tiltCards = document.querySelectorAll<HTMLElement>("[data-tilt]");
