@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
+    <div class="bg-glow bg-glow-a" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-b" aria-hidden="true"></div>
     <div class="site-shell">
       <header class="site-header" data-reveal>
         <a class="brand" href="#top" aria-label="Abhinand PP home">
@@ -28,6 +30,7 @@
           <a href="#experience">Experience</a>
           <a href="#stack">Stack</a>
           <a href="#contact">Contact</a>
+          <span class="nav-indicator" aria-hidden="true"></span>
         </nav>
         <a class="header-action" href="https://github.com/abhinand-codes" target="_blank" rel="noreferrer">GitHub</a>
       </header>
@@ -35,7 +38,7 @@
       <main id="top">
         <section class="hero section-grid">
           <div class="hero-copy" data-reveal>
-            <p class="eyebrow">Full Stack PHP/Laravel Developer</p>
+            <p class="eyebrow">Full Stack Laravel Developer</p>
             <h1>Production backend systems for teams that cannot afford fragile software.</h1>
             <p class="hero-lede">
               I build ERP, SaaS, GRC, and legal-tech platforms on Laravel 12, Vue.js, MySQL,
@@ -70,6 +73,9 @@
             <img src="/assets/enterprise-architecture.svg" alt="Abstract enterprise software architecture visualization" />
             <pre class="code-card" aria-label="Laravel payment reliability snippet"><code>// Zero payment loss in production
 DB::transaction(function () use ($order, $payload) {
+    if (PaymentRecord::where('webhook_id', $payload['id'])->exists()) {
+        return; // idempotent: already processed
+    }
     $order->markPaid();
     PaymentRecord::createFromWebhook($payload);
     event(new PaymentConfirmed($order));
@@ -290,6 +296,20 @@ DB::transaction(function () use ($order, $payload) {
             <p class="eyebrow">Stack</p>
             <h2>Tools chosen for durable production work.</h2>
           </div>
+
+          <div class="stack-marquee" data-reveal aria-hidden="true">
+            <div class="marquee-track">
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>PostgreSQL</span><span>Redis</span>
+              <span>Vue.js</span><span>React</span><span>TypeScript</span><span>JavaScript</span>
+              <span>Tailwind CSS</span><span>Stripe</span><span>Docker</span><span>Git</span>
+              <span>AWS S3</span><span>Claude Code</span>
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>PostgreSQL</span><span>Redis</span>
+              <span>Vue.js</span><span>React</span><span>TypeScript</span><span>JavaScript</span>
+              <span>Tailwind CSS</span><span>Stripe</span><span>Docker</span><span>Git</span>
+              <span>AWS S3</span><span>Claude Code</span>
+            </div>
+          </div>
+
           <div class="stack-grid">
             <article class="stack-card" data-reveal>
               <h3>Backend</h3>
@@ -310,6 +330,7 @@ DB::transaction(function () use ($order, $payload) {
               <h3>Frontend</h3>
               <ul class="chip-list">
                 <li>Vue.js 3</li>
+                <li>React</li>
                 <li>Livewire</li>
                 <li>Filament</li>
                 <li>Blade</li>
@@ -324,8 +345,6 @@ DB::transaction(function () use ($order, $payload) {
               <ul class="chip-list">
                 <li>Stripe</li>
                 <li>SolidGate</li>
-                <li>OpenAI API</li>
-                <li>Gemini API</li>
                 <li>Idempotency Handling</li>
                 <li>Webhook Validation</li>
               </ul>
@@ -334,6 +353,8 @@ DB::transaction(function () use ($order, $payload) {
               <h3>Data & Cloud</h3>
               <ul class="chip-list">
                 <li>MySQL</li>
+                <li>PostgreSQL</li>
+                <li>Redis</li>
                 <li>Query Optimization</li>
                 <li>Normalized Schema Design</li>
                 <li>AWS S3</li>
@@ -347,7 +368,8 @@ DB::transaction(function () use ($order, $payload) {
               <h3>AI Integrations</h3>
               <ul class="chip-list">
                 <li>OpenAI API</li>
-                <li>Gemini</li>
+                <li>Gemini API</li>
+                <li>Claude Code</li>
                 <li>Chat Autoreply System</li>
               </ul>
             </article>
@@ -362,7 +384,7 @@ DB::transaction(function () use ($order, $payload) {
           <div class="credential-list">
             <span><strong>AI</strong> Google AI Professional Certificate <em>2026</em></span>
             <span><strong>AI</strong> Anthropic AI Fluency & Foundations <em>2026</em></span>
-            <span><strong>BCA</strong> Bachelor of Computer Application — Kannur University <em>2018-2021</em></span>
+            <span><strong>BCA</strong> Bachelor of Computer Applications — Kannur University <em>2018-2021</em></span>
           </div>
         </section>
 
