@@ -21,32 +21,46 @@
   </head>
   <body>
     <div class="intro-loader" id="intro-loader" aria-hidden="true">
+      <div class="intro-bggrid" aria-hidden="true"></div>
       <div class="intro-glow" aria-hidden="true"></div>
 
-      <div class="intro-stage intro-stage-code" id="intro-stage-code">
-        <pre class="intro-code"><code><span class="intro-codeline"><span class="tok-kw">const</span> <span class="tok-var">app</span> = <span class="tok-fn">buildInterface</span>({</span>
-<span class="intro-codeline">  <span class="tok-prop">stack</span>: [<span class="tok-str">'Laravel'</span>, <span class="tok-str">'Vue'</span>, <span class="tok-str">'AI'</span>],</span>
-<span class="intro-codeline">  <span class="tok-prop">focus</span>: <span class="tok-str">'production-grade UX'</span>,</span>
-<span class="intro-codeline">});</span></code></pre>
+      <div class="intro-stage intro-stage-load" id="intro-stage-load">
+        <div class="intro-counter-row">
+          <span class="intro-counter" id="intro-counter">0</span><span class="intro-counter-sign">%</span>
+        </div>
+        <div class="intro-progress"><span id="intro-progress-fill"></span></div>
+        <p class="intro-loadlabel">compiling production-grade interfaces…</p>
       </div>
 
-      <div class="intro-stage intro-stage-ui" id="intro-stage-ui">
-        <div class="intro-card">
-          <div class="intro-card-bar">
+      <div class="intro-stage intro-stage-name" id="intro-stage-name">
+        <h2 class="intro-name" id="intro-name"></h2>
+        <p class="intro-role">Full&#8209;Stack Laravel Developer</p>
+      </div>
+
+      <div class="intro-stage intro-stage-skill" id="intro-stage-skill">
+        <div class="intro-window">
+          <div class="intro-window-bar">
             <span class="intro-dot intro-dot-red"></span>
             <span class="intro-dot intro-dot-amber"></span>
             <span class="intro-dot intro-dot-green"></span>
-            <span class="intro-card-title">app.buildInterface()</span>
+            <span class="intro-window-url">abhinandcodes.vercel.app</span>
           </div>
-          <div class="intro-card-body">
-            <div class="intro-chart" aria-hidden="true">
-              <span style="--h: 38%; --d: 0"></span>
-              <span style="--h: 72%; --d: 1"></span>
-              <span style="--h: 54%; --d: 2"></span>
-              <span style="--h: 90%; --d: 3"></span>
-              <span style="--h: 64%; --d: 4"></span>
+          <div class="intro-window-body">
+            <pre class="intro-code" id="intro-code"><code><span class="intro-codeline"><span class="tok-kw">const</span> <span class="tok-var">app</span> = <span class="tok-fn">buildInterface</span>({</span>
+<span class="intro-codeline">  <span class="tok-prop">stack</span>: [<span class="tok-str">'Laravel'</span>, <span class="tok-str">'Vue'</span>, <span class="tok-str">'AI'</span>],</span>
+<span class="intro-codeline">  <span class="tok-prop">focus</span>: <span class="tok-str">'production-grade UX'</span>,</span>
+<span class="intro-codeline">});</span></code></pre>
+            <div class="intro-card" id="intro-card">
+              <div class="intro-chart" aria-hidden="true">
+                <span style="--h: 38%; --d: 0"></span>
+                <span style="--h: 72%; --d: 1"></span>
+                <span style="--h: 54%; --d: 2"></span>
+                <span style="--h: 90%; --d: 3"></span>
+                <span style="--h: 64%; --d: 4"></span>
+                <span style="--h: 48%; --d: 5"></span>
+              </div>
+              <div class="intro-btn">Deployed ✓</div>
             </div>
-            <div class="intro-btn">Deployed ✓</div>
           </div>
         </div>
       </div>

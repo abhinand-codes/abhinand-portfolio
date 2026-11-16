@@ -15,35 +15,94 @@ if (introLoader) {
     introLoader.remove();
   } else {
     document.documentElement.style.overflow = "hidden";
-    const stageCode = document.querySelector<HTMLElement>("#intro-stage-code");
-    const stageUI = document.querySelector<HTMLElement>("#intro-stage-ui");
+
+    const stageLoad = document.querySelector<HTMLElement>("#intro-stage-load");
+    const stageName = document.querySelector<HTMLElement>("#intro-stage-name");
+    const stageSkill = document.querySelector<HTMLElement>("#intro-stage-skill");
+    const counterEl = document.querySelector<HTMLElement>("#intro-counter");
+    const progressEl = document.querySelector<HTMLElement>("#intro-progress-fill");
+    const nameEl = document.querySelector<HTMLElement>("#intro-name");
+    const codeEl = document.querySelector<HTMLElement>("#intro-code");
+    const cardEl = document.querySelector<HTMLElement>("#intro-card");
     const skipBtn = document.querySelector<HTMLButtonElement>("#intro-skip");
+
     const timers: number[] = [];
+    let rafId = 0;
     let finished = false;
 
     const finishIntro = () => {
       if (finished) return;
       finished = true;
       timers.forEach((t) => window.clearTimeout(t));
-      introLoader.classList.add("is-hidden");
+      if (rafId) window.cancelAnimationFrame(rafId);
+      introLoader.classList.add("is-wiping");
       document.documentElement.style.overflow = "";
       try {
         sessionStorage.setItem("intro-seen", "1");
       } catch {
         // ignore — nothing to persist to if storage is blocked.
       }
-      window.setTimeout(() => introLoader.remove(), 500);
+      window.setTimeout(() => introLoader.remove(), 900);
     };
 
-    // Sequence: code block types/reveals -> cross-fades into a live UI card -> reveals the real page.
-    timers.push(window.setTimeout(() => stageCode?.classList.add("is-active"), 80));
+    // Beat 1 — a loading counter ramps 0 -> 100 with an easing curve.
+    const runCounter = (duration: number) => {
+      const start = performance.now();
+      const step = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 2.2);
+        const value = Math.round(eased * 100);
+        if (counterEl) counterEl.textContent = String(value);
+        if (progressEl) progressEl.style.width = `${eased * 100}%`;
+        if (progress < 1) {
+          rafId = window.requestAnimationFrame(step);
+        }
+      };
+      rafId = window.requestAnimationFrame(step);
+    };
+
+    // Beat 2 — inject the name letter-by-letter so the stagger animation
+    // starts exactly when this stage becomes visible, not at page load.
+    const buildName = () => {
+      if (!nameEl) return;
+      const text = "ABHINAND PP";
+      nameEl.innerHTML = "";
+      text.split("").forEach((ch, idx) => {
+        const span = document.createElement("span");
+        span.className = "intro-letter" + (ch === " " ? " is-space" : "");
+        span.textContent = ch === " " ? " " : ch;
+        span.style.setProperty("--i", String(idx));
+        nameEl.appendChild(span);
+      });
+    };
+
+    runCounter(1100);
+    timers.push(window.setTimeout(() => stageLoad?.classList.add("is-active"), 20));
+
     timers.push(
       window.setTimeout(() => {
-        stageCode?.classList.add("is-done");
-        stageUI?.classList.add("is-active");
+        stageLoad?.classList.add("is-done");
+        buildName();
+        stageName?.classList.add("is-active");
       }, 1150)
     );
-    timers.push(window.setTimeout(finishIntro, 2550));
+
+    timers.push(
+      window.setTimeout(() => {
+        stageName?.classList.add("is-done");
+        stageSkill?.classList.add("is-active");
+        codeEl?.classList.add("is-active");
+      }, 2250)
+    );
+
+    timers.push(
+      window.setTimeout(() => {
+        codeEl?.classList.add("is-done");
+        cardEl?.classList.add("is-active");
+      }, 3150)
+    );
+
+    timers.push(window.setTimeout(finishIntro, 3950));
 
     skipBtn?.addEventListener("click", finishIntro);
     window.addEventListener(
