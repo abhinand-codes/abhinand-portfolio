@@ -1,6 +1,50 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
+// Intro boot sequence — terminal-style, plays once per browser tab session
+const introLoader = document.querySelector<HTMLElement>("#intro-loader");
+if (introLoader) {
+  let alreadySeen = false;
+  try {
+    alreadySeen = sessionStorage.getItem("intro-seen") === "1";
+  } catch {
+    // sessionStorage unavailable (private mode / blocked) — treat as not seen.
+  }
+
+  if (prefersReducedMotion || alreadySeen) {
+    introLoader.remove();
+  } else {
+    document.documentElement.style.overflow = "hidden";
+    const introTextEl = document.querySelector<HTMLElement>("#intro-text");
+    const line = "whoami && open abhinandcodes.vercel.app";
+    let i = 0;
+
+    const typeNext = () => {
+      if (!introTextEl) return;
+      introTextEl.textContent = line.slice(0, i);
+      i += 1;
+      if (i <= line.length) {
+        window.setTimeout(typeNext, 28);
+      } else {
+        window.setTimeout(finishIntro, 450);
+      }
+    };
+
+    const finishIntro = () => {
+      introLoader.classList.add("is-hidden");
+      document.documentElement.style.overflow = "";
+      try {
+        sessionStorage.setItem("intro-seen", "1");
+      } catch {
+        // ignore — nothing to persist to if storage is blocked.
+      }
+      window.setTimeout(() => introLoader.remove(), 450);
+    };
+
+    window.setTimeout(typeNext, 150);
+  }
+}
+
 const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
 const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-links a");
 const navList = document.querySelector<HTMLElement>(".nav-links");
