@@ -47,11 +47,13 @@
   background: var(--bg);
   opacity: 1;
   clip-path: circle(150% at 50% 50%);
-  transition: clip-path 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease 0.55s;
+  filter: blur(0px);
+  transition: clip-path 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease 0.55s, filter 0.85s ease;
 }
 
 .intro-loader.is-wiping {
   clip-path: circle(0% at 50% 50%);
+  filter: blur(7px);
   pointer-events: none;
 }
 
@@ -164,6 +166,7 @@
 
 /* Beat 2 — name reveal */
 .intro-name {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -173,6 +176,39 @@
   font-size: clamp(2.6rem, 10.5vw, 7.2rem);
   line-height: 1;
   letter-spacing: -0.01em;
+}
+
+.intro-name::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, 0.9) 50%, transparent 65%);
+  background-size: 260% 100%;
+  background-position: -140% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.intro-name.is-shined::after {
+  animation: intro-shine 0.85s ease forwards;
+}
+
+@keyframes intro-shine {
+  0% { background-position: -140% 0; opacity: 1; }
+  85% { opacity: 1; }
+  100% { background-position: 140% 0; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-name::after {
+    display: none;
+  }
 }
 
 .intro-name .intro-letter {
@@ -309,6 +345,16 @@
 .intro-code .tok-fn { color: var(--blue); }
 .intro-code .tok-prop { color: var(--muted); }
 .intro-code .tok-str { color: var(--teal); }
+
+.intro-code-caret {
+  display: inline-block;
+  color: var(--teal);
+}
+
+.intro-code.is-active .intro-code-caret {
+  animation: blink-cursor 1s step-end infinite;
+  animation-delay: 1.05s;
+}
 
 .intro-card {
   width: 100%;
@@ -646,11 +692,12 @@ a {
   background: transparent;
   border: 1px solid var(--line);
   color: var(--text);
-  transition: border-color 200ms ease, color 200ms ease;
+  transition: border-color 200ms ease, color 200ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header-action-ghost:hover,
 .header-action-ghost:focus-visible {
+  transform: translateY(-2px);
   border-color: var(--teal);
   color: var(--teal);
 }
@@ -805,16 +852,60 @@ h3 {
   text-underline-offset: 2px;
 }
 
+.primary-btn,
+.secondary-btn,
+.header-action {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
 .primary-btn {
   padding: 0 22px;
   background: var(--teal);
   color: #03110f;
 }
 
+.primary-btn:hover,
+.primary-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(40, 224, 195, 0.28);
+}
+
 .secondary-btn {
   padding: 0 22px;
   border: 1px solid var(--line);
   color: var(--text);
+}
+
+.secondary-btn:hover,
+.secondary-btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--teal);
+}
+
+.header-action:not(.header-action-ghost):hover,
+.header-action:not(.header-action-ghost):focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.header-action:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-btn,
+  .secondary-btn,
+  .header-action {
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+
+  .primary-btn:hover,
+  .secondary-btn:hover,
+  .header-action:hover {
+    transform: none;
+  }
 }
 
 .hero-stats {

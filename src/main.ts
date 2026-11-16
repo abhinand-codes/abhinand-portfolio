@@ -66,6 +66,8 @@ if (introLoader) {
     const buildName = () => {
       if (!nameEl) return;
       const text = "ABHINAND PP";
+      nameEl.setAttribute("data-text", text);
+      nameEl.classList.remove("is-shined");
       nameEl.innerHTML = "";
       text.split("").forEach((ch, idx) => {
         const span = document.createElement("span");
@@ -74,6 +76,8 @@ if (introLoader) {
         span.style.setProperty("--i", String(idx));
         nameEl.appendChild(span);
       });
+      // Once the letters have settled, run a one-shot light sweep across the name.
+      timers.push(window.setTimeout(() => nameEl.classList.add("is-shined"), 420));
     };
 
     runCounter(1100);
@@ -99,10 +103,10 @@ if (introLoader) {
       window.setTimeout(() => {
         codeEl?.classList.add("is-done");
         cardEl?.classList.add("is-active");
-      }, 3150)
+      }, 3300)
     );
 
-    timers.push(window.setTimeout(finishIntro, 3950));
+    timers.push(window.setTimeout(finishIntro, 4050));
 
     skipBtn?.addEventListener("click", finishIntro);
     window.addEventListener(
