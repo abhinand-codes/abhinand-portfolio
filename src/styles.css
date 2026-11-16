@@ -636,6 +636,25 @@ a {
   color: #061012;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-action-ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.header-action-ghost:hover,
+.header-action-ghost:focus-visible {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
 .section-grid,
 .section,
 .intro-band,
@@ -771,7 +790,19 @@ h3 {
 .hero-actions {
   flex-wrap: wrap;
   gap: 12px;
-  margin: 34px 0 42px;
+  margin: 34px 0 12px;
+}
+
+.hero-resume-note {
+  margin: 0 0 30px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.hero-resume-note a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .primary-btn {
