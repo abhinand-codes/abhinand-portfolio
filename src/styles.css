@@ -17,6 +17,25 @@
   box-sizing: border-box;
 }
 
+.skip-link {
+  position: fixed;
+  top: -3rem;
+  left: 1rem;
+  z-index: 10500;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: var(--teal);
+  color: #04181a;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 .intro-loader {
   position: fixed;
   inset: 0;
