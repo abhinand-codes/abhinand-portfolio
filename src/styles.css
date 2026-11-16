@@ -1171,9 +1171,27 @@ h3 {
 }
 
 .timeline-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--amber);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.82rem;
+}
+
+.timeline-current-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(40, 224, 195, 0.14);
+  color: var(--teal);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.timeline-item-current::before {
+  background: var(--teal);
+  box-shadow: 0 0 0 4px rgba(40, 224, 195, 0.18);
 }
 
 .stack-marquee {
