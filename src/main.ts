@@ -15,22 +15,16 @@ if (introLoader) {
     introLoader.remove();
   } else {
     document.documentElement.style.overflow = "hidden";
-    const introTextEl = document.querySelector<HTMLElement>("#intro-text");
-    const line = "whoami && open abhinandcodes.vercel.app";
-    let i = 0;
-
-    const typeNext = () => {
-      if (!introTextEl) return;
-      introTextEl.textContent = line.slice(0, i);
-      i += 1;
-      if (i <= line.length) {
-        window.setTimeout(typeNext, 28);
-      } else {
-        window.setTimeout(finishIntro, 450);
-      }
-    };
+    const stageCode = document.querySelector<HTMLElement>("#intro-stage-code");
+    const stageUI = document.querySelector<HTMLElement>("#intro-stage-ui");
+    const skipBtn = document.querySelector<HTMLButtonElement>("#intro-skip");
+    const timers: number[] = [];
+    let finished = false;
 
     const finishIntro = () => {
+      if (finished) return;
+      finished = true;
+      timers.forEach((t) => window.clearTimeout(t));
       introLoader.classList.add("is-hidden");
       document.documentElement.style.overflow = "";
       try {
@@ -38,10 +32,27 @@ if (introLoader) {
       } catch {
         // ignore — nothing to persist to if storage is blocked.
       }
-      window.setTimeout(() => introLoader.remove(), 450);
+      window.setTimeout(() => introLoader.remove(), 500);
     };
 
-    window.setTimeout(typeNext, 150);
+    // Sequence: code block types/reveals -> cross-fades into a live UI card -> reveals the real page.
+    timers.push(window.setTimeout(() => stageCode?.classList.add("is-active"), 80));
+    timers.push(
+      window.setTimeout(() => {
+        stageCode?.classList.add("is-done");
+        stageUI?.classList.add("is-active");
+      }, 1150)
+    );
+    timers.push(window.setTimeout(finishIntro, 2550));
+
+    skipBtn?.addEventListener("click", finishIntro);
+    window.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape") finishIntro();
+      },
+      { once: true }
+    );
   }
 }
 

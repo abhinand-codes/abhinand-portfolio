@@ -21,9 +21,37 @@
   </head>
   <body>
     <div class="intro-loader" id="intro-loader" aria-hidden="true">
-      <div class="intro-content">
-        <p class="intro-line"><span class="intro-prompt">$</span> <span class="intro-text" id="intro-text"></span><span class="intro-caret">_</span></p>
+      <div class="intro-glow" aria-hidden="true"></div>
+
+      <div class="intro-stage intro-stage-code" id="intro-stage-code">
+        <pre class="intro-code"><code><span class="intro-codeline"><span class="tok-kw">const</span> <span class="tok-var">app</span> = <span class="tok-fn">buildInterface</span>({</span>
+<span class="intro-codeline">  <span class="tok-prop">stack</span>: [<span class="tok-str">'Laravel'</span>, <span class="tok-str">'Vue'</span>, <span class="tok-str">'AI'</span>],</span>
+<span class="intro-codeline">  <span class="tok-prop">focus</span>: <span class="tok-str">'production-grade UX'</span>,</span>
+<span class="intro-codeline">});</span></code></pre>
       </div>
+
+      <div class="intro-stage intro-stage-ui" id="intro-stage-ui">
+        <div class="intro-card">
+          <div class="intro-card-bar">
+            <span class="intro-dot intro-dot-red"></span>
+            <span class="intro-dot intro-dot-amber"></span>
+            <span class="intro-dot intro-dot-green"></span>
+            <span class="intro-card-title">app.buildInterface()</span>
+          </div>
+          <div class="intro-card-body">
+            <div class="intro-chart" aria-hidden="true">
+              <span style="--h: 38%; --d: 0"></span>
+              <span style="--h: 72%; --d: 1"></span>
+              <span style="--h: 54%; --d: 2"></span>
+              <span style="--h: 90%; --d: 3"></span>
+              <span style="--h: 64%; --d: 4"></span>
+            </div>
+            <div class="intro-btn">Deployed ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="intro-skip" id="intro-skip" type="button" aria-label="Skip intro">Skip →</button>
     </div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
     <div class="bg-noise" aria-hidden="true"></div>

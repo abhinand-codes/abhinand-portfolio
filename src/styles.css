@@ -24,9 +24,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: var(--bg);
   opacity: 1;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
 }
 
 .intro-loader.is-hidden {
@@ -34,36 +35,180 @@
   pointer-events: none;
 }
 
-.intro-content {
-  font-family: "JetBrains Mono", monospace;
-  font-size: clamp(0.95rem, 2.4vw, 1.25rem);
-  color: var(--teal);
+.intro-glow {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(38rem 38rem at 30% 30%, rgba(40, 224, 195, 0.16), transparent 60%),
+    radial-gradient(34rem 34rem at 72% 68%, rgba(75, 163, 255, 0.14), transparent 60%),
+    radial-gradient(30rem 30rem at 85% 20%, rgba(155, 123, 255, 0.14), transparent 60%);
+  animation: intro-glow-drift 6s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
-.intro-line {
-  margin: 0;
+@keyframes intro-glow-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-2%, 2%, 0) scale(1.06); }
+}
+
+/* Shared stage positioning: stacked, centered, cross-faded by JS-toggled classes */
+.intro-stage {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  white-space: pre;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
 
-.intro-prompt {
-  color: var(--blue);
+.intro-stage.is-active {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.intro-text {
+.intro-stage.is-done {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* Stage 1 — code */
+.intro-code {
+  margin: 0;
+  padding: 1.5rem 1.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(13, 27, 32, 0.75);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(0.82rem, 2vw, 1rem);
+  line-height: 1.7;
   color: var(--text);
+  max-width: min(92vw, 30rem);
 }
 
-.intro-caret {
+.intro-codeline {
+  display: block;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: intro-line-in 0.45s ease forwards;
+}
+
+.intro-codeline:nth-child(1) { animation-delay: 0.05s; }
+.intro-codeline:nth-child(2) { animation-delay: 0.25s; }
+.intro-codeline:nth-child(3) { animation-delay: 0.45s; }
+.intro-codeline:nth-child(4) { animation-delay: 0.65s; }
+
+@keyframes intro-line-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.intro-code .tok-kw { color: var(--violet); }
+.intro-code .tok-var { color: var(--text); }
+.intro-code .tok-fn { color: var(--blue); }
+.intro-code .tok-prop { color: var(--muted); }
+.intro-code .tok-str { color: var(--teal); }
+
+/* Stage 2 — UI card the code "becomes" */
+.intro-card {
+  width: min(92vw, 22rem);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(165deg, rgba(17, 38, 43, 0.92), rgba(13, 27, 32, 0.92));
+  box-shadow: var(--shadow);
+}
+
+.intro-card-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.intro-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.intro-dot-red { background: #ff6159; }
+.intro-dot-amber { background: #ffbd2e; }
+.intro-dot-green { background: #28c940; }
+
+.intro-card-title {
+  margin-left: 0.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.intro-card-body {
+  padding: 1.5rem 1.25rem 1.25rem;
+}
+
+.intro-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 5.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.intro-chart span {
+  flex: 1;
+  height: 0;
+  border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, var(--teal), var(--blue));
+  animation: intro-bar-grow 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--d) * 0.08s + 0.1s);
+}
+
+@keyframes intro-bar-grow {
+  to { height: var(--h); }
+}
+
+.intro-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  color: #04181a;
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0;
+  transform: translateY(4px);
+  animation: intro-line-in 0.4s ease forwards;
+  animation-delay: 0.7s;
+}
+
+.intro-skip {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, color 0.2s ease;
+  animation: intro-line-in 0.4s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.intro-skip:hover,
+.intro-skip:focus-visible {
   color: var(--teal);
-  animation: intro-blink 0.9s step-end infinite;
-}
-
-@keyframes intro-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
